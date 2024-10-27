@@ -5,7 +5,6 @@ import com.gamesLib.api.Domain.Dto.GamePutDto;
 import com.gamesLib.api.Domain.Dto.GameReturnDto;
 import com.gamesLib.api.Domain.Model.GameModel;
 import com.gamesLib.api.Domain.Repository.GameRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,9 +12,6 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
@@ -36,6 +32,18 @@ public class GameService {
         var page = repository.findAll(pageable).map(GameGetDto::new);
 
         return ResponseEntity.ok().body(page);
+    }
+
+    public ResponseEntity<GameReturnDto> getGameById(Long id){
+        var game = repository.findById(id);
+
+        if (game.isPresent()){
+            var catchGame = game.get();
+
+            return ResponseEntity.ok().body(new GameReturnDto(catchGame));
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<GameReturnDto> updateGame(Long id, GamePutDto data){
@@ -81,6 +89,18 @@ public class GameService {
             return new ResponseEntity<>("Game id: " + id + "not found!", HttpStatus.NOT_FOUND);
         }
 
+    }
+
+    public ResponseEntity<Page<GameReturnDto>> getByPlatforms(String platform, Pageable pageable){
+        var page = repository.findByPlatform(platform, pageable).map(GameReturnDto::new);
+
+        return ResponseEntity.ok().body(page);
+    }
+
+    public ResponseEntity<Page<GameReturnDto>> getByMetacritic(Double note, Pageable pageable){
+        var page = repository.findByMetacritic(note, pageable).map(GameReturnDto::new);
+
+        return ResponseEntity.ok().body(page);
     }
 
 }

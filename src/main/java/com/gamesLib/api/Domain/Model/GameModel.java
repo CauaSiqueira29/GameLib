@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,7 +22,9 @@ public class GameModel {
     private String name;
     private Date releaseDate;
     private Double metacritic;
-    private String[] platforms;
+
+    @ElementCollection
+    private List<String> platforms;
     private String developer;
     private String poster;
 

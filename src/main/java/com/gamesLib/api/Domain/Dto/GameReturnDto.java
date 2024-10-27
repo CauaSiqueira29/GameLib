@@ -3,12 +3,13 @@ package com.gamesLib.api.Domain.Dto;
 import com.gamesLib.api.Domain.Model.GameModel;
 
 import java.util.Date;
+import java.util.List;
 
 public record GameReturnDto(Long id,
                             String name,
                             Date releaseDate,
                             Double metacritic,
-                            String[] platforms,
+                            List<String> platforms,
                             String developer,
                             String poster) {
 
