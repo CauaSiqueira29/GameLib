@@ -1,6 +1,6 @@
 # GamesLib
 ## Descrição do Projeto
-O GamesLib é uma API desenvolvida para praticar e aplicar conhecimentos em desenvolvimento backend com Spring Boot. Este projeto foca na criação de uma biblioteca de jogos que pode ser consultada e gerenciada através de requisições HTTP. A API permite operações CRUD, consultas filtradas, e busca por jogos baseados em suas características.
+O GamesLib é uma API desenvolvida para praticar e aplicar conhecimentos em desenvolvimento backend com Spring Boot. Este projeto foca na criação de uma biblioteca de jogos que pode ser consultada e gerenciada através de requisições HTTP. A API permite operações CRUD e consultas filtradas.
 
 ## Tecnologias Utilizadas
 - Java 17
